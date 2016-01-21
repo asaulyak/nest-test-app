@@ -21,3 +21,4 @@ The purpose of the application is to allow users set up schedule for nest thermo
  - Launch _/test/ui/index.html_ for web components unit tests
 
 The application will be available at http://localhost:3000
+
