@@ -10,7 +10,7 @@
 
 		onRouteChanged: function (name, router) {
 
-			// Dummy way to implement menu highlighting
+			// Highlighting selected menu tab
 			this.each(function (model) {
 				model.set({
 					isSelected: model.get('tab') === router.currentTab
