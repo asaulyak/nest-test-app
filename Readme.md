@@ -10,6 +10,7 @@ For the sake of simplicity we assumed that:
 - Time bounds during the day are fixed.
 - Thermostats are using Celsius temperature scale.
 - Working Nest environment is predefined and can be changed by specifying custom credentials in config file.
+
 ## Technologies
 _Client side uses the following technologies:_
 - Backbone.js - for web application structure
@@ -22,6 +23,7 @@ _On the server side we have:_
 - Mongodb -thermostats settings storage
 - Mongoose - mongodb object modeling
 - Unirest - middleware for interacting with nest REST API
+
 ## Testing
 - Mocha - simple test framework for running tests on node.js and in the browser
 - Chai - assertion framework for node/browser testing
@@ -29,10 +31,12 @@ _On the server side we have:_
 - Supertest - http agent for testing REST API
 - Sinon - library for creating stubs, mocks, spies
 - Proxyquire - overrides node's "require" function to allow mocking
+
 ## Structure
 The application consists of 2 parts - client and server.
 Client side works on top of Backbone.js. On the home page the users can observe the locations of their homes where thermostats are installed with detailed information about their current state. Here the users configure a schedule for the thermostats for each day of the week. In the Modes section the user is able to change the temperature settings for each mode.
-    Server side is responsible for delivering index page of the application to the user, interacting with Nest REST API and storing user defined configuration. 
+Server side is responsible for delivering index page of the application to the user, interacting with Nest REST API and storing user defined configuration. 
+
 ## Testing
 The application includes a series of tests. There are integration tests for REST API component and web client unit tests. 
 The first group covers REST API functionality that has been implemented for client-server communications within the app. It checks the API for proper responses on different types of requests.
