@@ -12,11 +12,13 @@ For the sake of simplicity we assumed that:
 - Working Nest environment is predefined and can be changed by specifying custom credentials in config file.
 
 ## Technologies
+
 _Client side uses the following technologies:_
 - Backbone.js - for web application structure
 - Semantic-ui - convenient tool for responsive layout building
 - jQuery
 - Underscore.js
+
 _On the server side we have:_
 - Node.js - web server
 - Express.js - MVC framework for REST and web ui
@@ -24,7 +26,7 @@ _On the server side we have:_
 - Mongoose - mongodb object modeling
 - Unirest - middleware for interacting with nest REST API
 
-## Testing
+_Testing_
 - Mocha - simple test framework for running tests on node.js and in the browser
 - Chai - assertion framework for node/browser testing
 - Chai-backbone - special Chai addon for Backbone.js
