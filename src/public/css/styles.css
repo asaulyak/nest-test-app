@@ -1,0 +1,291 @@
+html, body {
+    background: #f2f4f6;
+}
+
+.main.container {
+    padding-top: 7em;
+}
+.column-inner {
+    padding-top: 2rem;
+}
+.text-primary {
+    color: #01afd8;
+}
+
+/* thermostat */
+.thermostat-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    margin-top: 2rem;
+    padding-top: 100%;
+}
+.thermostat {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 374px;
+    max-height: 374px;
+    background: url(../img/thermostat.png) no-repeat center top;
+    background-size: cover;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+.thermostat .screen {
+    position: absolute;
+    background: url(../img/scale.png) no-repeat center center;
+    background-size: contain;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 65%;
+    height: 65%;
+    border-radius: 50%;
+}
+.thermostat .screen.heat {
+    background-color: #ff6600;
+}
+.thermostat .screen.cold {
+    background-color: #2039E7;
+}
+.thermostat .screen .value {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 65px;
+    line-height: 230px;
+}
+.thermostat .screen .leaf {
+    background: url(../img/leaf.png);
+    width: 22px;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 30px;
+}
+
+@media only screen and (max-width: 991px) {
+    .thermostat-container {
+        width: auto;
+        height: auto;
+        padding-top: 0;
+    }
+    .thermostat {
+        position: relative;
+        width: 374px;
+        height: 374px;
+    }
+}
+
+/* semantic ui overrides */
+.ui.tabular.menu {
+    border-bottom-color: #fff;
+}
+.ui.tabular.menu .active.item {
+    border: none;
+    border-top: 2px solid #01afd8;
+    border-radius: 0 !important;
+}
+
+.ui.segment {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+.ui.tertiary.segment {
+    background: #f2f4f6;
+}
+.ui.attached.segment {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    border: 0;
+}
+.ui.segment[class*="bottom attached"] {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+.ui.list .list > .item a.header,
+.ui.list > .item a.header {
+    color: #01afd8 !important;
+}
+.ui.list .list > .item a.header:hover,
+.ui.list > .item a.header:hover {
+    color: #3d4247 !important;
+}
+
+.ui.form .disabled.field,
+.ui.form .disabled.fields .field,
+.ui.form .field :disabled {
+    opacity: 0.8;
+}
+.ui.form .field.disabled label {
+    opacity: 1;
+}
+
+.ui.toggle.checkbox input:checked~.box:before,
+.ui.toggle.checkbox input:checked~label:before,
+.ui.toggle.checkbox input:focus:checked~.box:before,
+.ui.toggle.checkbox input:focus:checked~label:before{
+    background: #01afd8 !important;
+}
+
+/* range slider */
+.irs-single {
+    background: #01afd8;
+    border: 0;
+}
+.irs-bar,
+.irs-bar-edge {
+    background: #78cfe4;
+    border: 0;
+}
+.irs-line {
+    border: 0;
+    background: #eee;
+}
+.irs-slider {
+    border: 6px solid #01afd8;
+    background: #fff;
+    box-shadow: 0 0 1px 0 #fff;
+}
+
+/* loader */
+@-webkit-keyframes loader-anim {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0
+    }
+}
+@keyframes loader-anim {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0
+    }
+}
+.loader {
+    position: relative;
+    background: none;
+    width: 200px;
+    height: 200px;
+    margin: 10em auto;
+}
+.loader > div {
+    position: absolute;
+    top: 80px;
+    left: 95px;
+    width: 10px;
+    height: 40px;
+    background: #01afd8;
+}
+.loader > div:nth-of-type(1) {
+    -webkit-animation: loader-anim 1s linear infinite;
+    animation: loader-anim 1s linear infinite;
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+    -webkit-transform: rotate(0deg) translate(0,-60px);
+    transform: rotate(0deg) translate(0,-60px);
+}
+.loader > div:nth-of-type(2) {
+    -webkit-animation: loader-anim 1s linear infinite;
+    animation: loader-anim 1s linear infinite;
+    -webkit-animation-delay: -0.4166666666666667s;
+    animation-delay: -0.4166666666666667s;
+    -webkit-transform: rotate(30deg) translate(0,-60px);
+    transform: rotate(30deg) translate(0,-60px);
+}
+.loader > div:nth-of-type(3) {
+    -webkit-animation: loader-anim 1s linear infinite;
+    animation: loader-anim 1s linear infinite;
+    -webkit-animation-delay: -0.33333333333333337s;
+    animation-delay: -0.33333333333333337s;
+    -webkit-transform: rotate(60deg) translate(0,-60px);
+    transform: rotate(60deg) translate(0,-60px);
+}
+.loader > div:nth-of-type(4) {
+    -webkit-animation: loader-anim 1s linear infinite;
+    animation: loader-anim 1s linear infinite;
+    -webkit-animation-delay: -0.25s;
+    animation-delay: -0.25s;
+    -webkit-transform: rotate(90deg) translate(0,-60px);
+    transform: rotate(90deg) translate(0,-60px);
+}
+.loader > div:nth-of-type(5) {
+    -webkit-animation: loader-anim 1s linear infinite;
+    animation: loader-anim 1s linear infinite;
+    -webkit-animation-delay: -0.16666666666666669s;
+    animation-delay: -0.16666666666666669s;
+    -webkit-transform: rotate(120deg) translate(0,-60px);
+    transform: rotate(120deg) translate(0,-60px);
+}
+.loader > div:nth-of-type(6) {
+    -webkit-animation: loader-anim 1s linear infinite;
+    animation: loader-anim 1s linear infinite;
+    -webkit-animation-delay: -0.08333333333333331s;
+    animation-delay: -0.08333333333333331s;
+    -webkit-transform: rotate(150deg) translate(0,-60px);
+    transform: rotate(150deg) translate(0,-60px);
+}
+.loader > div:nth-of-type(7) {
+    -webkit-animation: loader-anim 1s linear infinite;
+    animation: loader-anim 1s linear infinite;
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+    -webkit-transform: rotate(180deg) translate(0,-60px);
+    transform: rotate(180deg) translate(0,-60px);
+}
+.loader > div:nth-of-type(8) {
+    -webkit-animation: loader-anim 1s linear infinite;
+    animation: loader-anim 1s linear infinite;
+    -webkit-animation-delay: 0.08333333333333337s;
+    animation-delay: 0.08333333333333337s;
+    -webkit-transform: rotate(210deg) translate(0,-60px);
+    transform: rotate(210deg) translate(0,-60px);
+}
+.loader > div:nth-of-type(9) {
+    -webkit-animation: loader-anim 1s linear infinite;
+    animation: loader-anim 1s linear infinite;
+    -webkit-animation-delay: 0.16666666666666663s;
+    animation-delay: 0.16666666666666663s;
+    -webkit-transform: rotate(240deg) translate(0,-60px);
+    transform: rotate(240deg) translate(0,-60px);
+}
+.loader > div:nth-of-type(10) {
+    -webkit-animation: loader-anim 1s linear infinite;
+    animation: loader-anim 1s linear infinite;
+    -webkit-animation-delay: 0.25s;
+    animation-delay: 0.25s;
+    -webkit-transform: rotate(270deg) translate(0,-60px);
+    transform: rotate(270deg) translate(0,-60px);
+}
+.loader > div:nth-of-type(11) {
+    -webkit-animation: loader-anim 1s linear infinite;
+    animation: loader-anim 1s linear infinite;
+    -webkit-animation-delay: 0.33333333333333337s;
+    animation-delay: 0.33333333333333337s;
+    -webkit-transform: rotate(300deg) translate(0,-60px);
+    transform: rotate(300deg) translate(0,-60px);
+}
+.loader > div:nth-of-type(12) {
+    -webkit-animation: loader-anim 1s linear infinite;
+    animation: loader-anim 1s linear infinite;
+    -webkit-animation-delay: 0.41666666666666663s;
+    animation-delay: 0.41666666666666663s;
+    -webkit-transform: rotate(330deg) translate(0,-60px);
+    transform: rotate(330deg) translate(0,-60px);
+}

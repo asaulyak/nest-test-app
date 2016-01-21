@@ -1,0 +1,32 @@
+{
+  "name": "smart-things",
+  "version": "1.0.0",
+  "description": "The application allows users control heating system of their houses by setting up a heating mode. Also users are able to get a power consumption statistics with forecast of future costs.",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js",
+    "populatedb": "mongo < ./storage/populateDb"
+  },
+  "author": "yevgeniy.asaulyak",
+  "license": "ISC",
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "ion-rangeslider": "^2.1.2",
+    "jquery": "^2.2.0",
+    "mongoose": "^4.3.6",
+    "node-schedule": "^0.6.0",
+    "semantic-ui": "^2.1.8",
+    "underscore": "^1.8.3",
+    "unirest": "^0.4.2"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "proxyquire": "^1.7.3",
+    "sinon": "^1.17.2",
+    "supertest": "^1.1.0"
+  }
+}

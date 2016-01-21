@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Smart Things</title>
+	<link rel="stylesheet" href="semantic/dist/semantic.min.css"/>
+	<link rel="stylesheet" href="node_modules/ion-rangeslider/css/ion.rangeSlider.css"/>
+	<link rel="stylesheet" href="node_modules/ion-rangeslider/css/ion.rangeSlider.skinHTML5.css"/>
+	<link rel="stylesheet" href="public/css/styles.css"/>
+</head>
+<body>
+<header id="header"></header>
+<main id="main"></main>
+
+<script id="template-loader" type="text/template">
+	<div class="loader">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</script>
+
+<script id="template-menu" type="text/template">
+	<div class="ui fixed inverted menu">
+		<div class="ui container navigation">
+			<a href="#home" class="header item">
+				<img class="logo" src="public/img/nest-home.png">
+				Smart Things
+			</a>
+		</div>
+	</div>
+</script>
+
+<script id="template-modes" type="text/template">
+	<section class="ui main container">
+		<h1 class="ui header">
+			Heating Modes
+		</h1>
+		<div class="ui segment">
+			<div class="ui big horizontal  list">
+				<% _.each(modes, function(item){ %>
+				<div class="item">
+					<i class="large leaf middle aligned icon"></i>
+					<div class="content">
+						<a class="header" href="#modes/<%= item.id %>"><%= item.name %></a>
+					</div>
+				</div>
+				<% }); %>
+			</div>
+		</div>
+	</section>
+</script>
+
+<script id="template-mode" type="text/template">
+	<section class="ui main container">
+		<h1 class="ui header">
+			<%= name %>
+		</h1>
+		<div class="ui top attached tabular menu">
+			<% _.each(schedule, function(item, index){ %>
+			<a class="item <%= !index ? 'active' : '' %>" data-tab="<%= item.name.toLowerCase() %>">
+				<%= item.name %>
+			</a>
+			<% }); %>
+		</div>
+
+		<% _.each(schedule, function(item, index){ %>
+		<div class="ui tab segment attached <%= !index ? 'active' : '' %>"
+		     data-tab="<%= item.name.toLowerCase() %>">
+
+			<h2>Time period</h2>
+			<form class="ui form">
+				<div class="ui grid">
+					<div class="row">
+						<div class="sixteen wide tablet eight wide computer column">
+							<div class="field">
+								<label>From</label>
+								<div class="input-group clockpicker">
+									<div class="ui left icon input">
+										<input type="text" class="form-control time-piker"
+										       data-period="<%= item.name.toLowerCase() %>" name="timeFrom" readonly
+										       value="<%= item.timeFrom %>"/>
+										<i class="clock icon"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="sixteen wide tablet eight wide computer column">
+							<div class="field">
+								<label>To</label>
+								<div class="input-group clockpicker">
+									<div class="ui left icon input">
+										<input type="text" class="form-control time-piker"
+										       data-period="<%= item.name.toLowerCase() %>" name="timeTo" readonly
+										       value="<%= item.timeTo %>"/>
+										<i class="clock icon"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<div class="ui grid">
+				<div class="row">
+					<div class="sixteen wide column">
+						<h2>Settings</h2>
+						<form class="ui form">
+							<div class="field">
+								<label>Temperature</label>
+								<input type="range" class="temperature range"
+								       data-period="<%= item.name.toLowerCase() %>" value="<%= item.temperature %>"/>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<% }); %>
+	</section>
+</script>
+
+<script id="template-devices" type="text/template">
+	<div class="ui main container">
+		<h1 class="ui header aligned">Heating System</h1>
+
+		<div class="ui top attached tabular menu">
+
+			<% _.each(devices, function(item, index){ %>
+			<a class="item <%= !index ? 'active' : '' %>" data-tab="<%= item.id %>">
+				<%= item.placement %>
+			</a>
+			<% }); %>
+		</div>
+
+		<% _.each(devices, function(device, index){ %>
+		<div class="ui bottom attached tab segment <%= !index ? 'active' : '' %>" data-tab="<%= device.id %>">
+			<section class="container">
+				<div class="ui grid">
+					<div class="row">
+						<div class="sixteen wide tablet six wide computer column">
+							<div class="thermostat-container">
+								<div class="thermostat">
+									<div class="screen <%= device.isHeating ? 'heat' : 'cold' %>">
+										<div class="value"><%= device.currentTemperatureC %>&deg;</div>
+										<div class="leaf"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="sixteen wide tablet ten wide computer column">
+							<div class="column-inner">
+								<h2 class="ui header"><i class="info icon"></i> Thermostat Information</h2>
+								<div class="ui tertiary segment">
+									<form class="ui form">
+										<div class="field disabled">
+											<label>Name</label>
+											<input type="text" name="name" value="<%= device.name %>"/>
+										</div>
+										<div class="field disabled">
+											<label>Placement</label>
+											<input type="text" name="placement" value="<%= device.placement %>"/>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="column-inner">
+								<h2 class="ui header"><i class="calendar icon"></i> Schedule</h2>
+
+								<div class="ui tertiary segment">
+									<div class="ui top attached tabular menu">
+										<% _.each(device.schedule, function(item, index){ %>
+										<a class="item <%= !index ? 'active' : '' %>"
+										   data-tab="<%= item.name.toLowerCase() + device.id %>"><%= item.name.substring(0, 3)%></a>
+										<% }); %>
+									</div>
+
+									<% _.each(device.schedule, function(item, index){ %>
+
+									<div class="ui bottom attached tab segment item <%= !index ? 'active' : '' %>"
+									     data-tab="<%= item.name.toLowerCase() + device.id %>">
+										<div class="ui form">
+											<div class="grouped fields">
+												<label>Heating mode</label>
+												<% _.each(modes, function(mode, index){ %>
+												<div class="field">
+													<div class="ui toggle checkbox">
+														<input class="mode" type="radio" data-mode="<%= mode.id %>"
+														       data-device="<%= device.id %>"
+														       data-day="<%= item.name %>"
+														       name="<%= item.name.toLowerCase() + device.id%>"
+														<%= item.modeId === mode.id ? 'checked' : '' %>>
+														<label><%= mode.name %></label>
+													</div>
+												</div>
+												<% }) %>
+											</div>
+										</div>
+									</div>
+									<% }); %>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<% }); %>
+	</div>
+</script>
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/underscore/underscore-min.js"></script>
+<script src="node_modules/backbone/backbone-min.js"></script>
+<script src="node_modules/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+<script src="semantic/dist/semantic.min.js"></script>
+<script src="public/js/app.js"></script>
+<script src="public/js/mixins/viewMixin.js"></script>
+<script src="public/js/models/menuItem.js"></script>
+<script src="public/js/views/appView.js"></script>
+<script src="public/js/collections/menu.js"></script>
+<script src="public/js/views/devices.js"></script>
+<script src="public/js/views/menu/menuItem.js"></script>
+<script src="public/js/views/menu/menu.js"></script>
+<script src="public/js/views/mode.js"></script>
+<script src="public/js/views/modes.js"></script>
+<script src="public/js/views/loader.js"></script>
+<script src="public/js/models/mode.js"></script>
+<script src="public/js/models/device.js"></script>
+<script src="public/js/collections/devices.js"></script>
+<script src="public/js/collections/modes.js"></script>
+<script src="public/js/routers/router.js"></script>
+</body>
+</html>
